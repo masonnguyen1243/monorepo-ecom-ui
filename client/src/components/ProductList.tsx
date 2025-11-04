@@ -2,7 +2,7 @@ import { ProductsType } from "@/types";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
-import Filter from "./FIlter";
+import Filter from "./Filter";
 
 //Mock data
 const products: ProductsType = [
