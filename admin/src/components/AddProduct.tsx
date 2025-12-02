@@ -243,40 +243,64 @@ const AddProduct = () => {
                     <FormItem>
                       <FormLabel>Colors</FormLabel>
                       <FormControl>
-                        <div className="grid grid-cols-3 gap-4 my-2">
-                          {colors.map((color) => (
-                            <div
-                              key={color}
-                              className="flex items-center gap-2"
-                            >
-                              <Checkbox
-                                id="color"
-                                checked={field.value?.includes(color)}
-                                onCheckedChange={(checked) => {
-                                  const currentValues = field.value || [];
-                                  if (checked) {
-                                    field.onChange([...currentValues, color]);
-                                  } else {
-                                    field.onChange(
-                                      currentValues.filter(
-                                        (value) => value !== color
-                                      )
-                                    );
-                                  }
-                                }}
-                              />
-                              <label
-                                htmlFor="color"
-                                className="text-sm flex items-center gap-2"
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-3 gap-4 my-2">
+                            {colors.map((color) => (
+                              <div
+                                key={color}
+                                className="flex items-center gap-2"
                               >
-                                <div
-                                  className="w-2 h-2 rounded-full"
-                                  style={{ backgroundColor: color }}
+                                <Checkbox
+                                  id="color"
+                                  checked={field.value?.includes(color)}
+                                  onCheckedChange={(checked) => {
+                                    const currentValues = field.value || [];
+                                    if (checked) {
+                                      field.onChange([...currentValues, color]);
+                                    } else {
+                                      field.onChange(
+                                        currentValues.filter(
+                                          (value) => value !== color
+                                        )
+                                      );
+                                    }
+                                  }}
                                 />
-                                {color}
-                              </label>
+                                <label
+                                  htmlFor="color"
+                                  className="text-sm flex items-center gap-2"
+                                >
+                                  <div
+                                    className="w-2 h-2 rounded-full"
+                                    style={{ backgroundColor: color }}
+                                  />
+                                  {color}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                          {field.value && field.value.length > 0 && (
+                            <div className="mt-8 space-y-4">
+                              <p className="text-sm font-medium">
+                                Upload images for the selected colors:
+                              </p>
+                              {field.value.map((color) => (
+                                <div
+                                  className="flex items-center gap-2"
+                                  key={color}
+                                >
+                                  <div
+                                    className="w-2 h-2 rounded-full"
+                                    style={{ backgroundColor: color }}
+                                  />
+                                  <span className="text-sm min-w-[60px]">
+                                    {color}
+                                  </span>
+                                  <Input type="file" accept="image/*" />
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          )}
                         </div>
                       </FormControl>
                       <FormDescription>
